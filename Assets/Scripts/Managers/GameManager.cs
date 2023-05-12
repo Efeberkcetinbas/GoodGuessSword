@@ -7,11 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public GameData gameData;
     public PlayerData playerData;
+    public RivalData rivalData;
 
-    [SerializeField] private GameObject FailPanel;
-    [SerializeField] private Ease ease;
 
-    public float InitialDifficultyValue;
 
 
     private void Awake() 
@@ -33,10 +31,7 @@ public class GameManager : MonoBehaviour
     
     void OnGameOver()
     {
-        FailPanel.SetActive(true);
-        FailPanel.transform.DOScale(Vector3.one,1f).SetEase(ease);
         gameData.isGameEnd=true;
-
     }
     
 
@@ -66,7 +61,27 @@ public class GameManager : MonoBehaviour
     
     void ClearData()
     {
+        ResetDirections();
+    }
 
+    void OnNextLevel()
+    {
+        ResetDirections();
+    }
+
+    private void ResetDirections()
+    {
+        playerData.up=false;
+        playerData.down=false;
+        playerData.left=false;
+        playerData.right=false;
+        playerData.center=false;
+
+        rivalData.up=false;
+        rivalData.down=false;
+        rivalData.left=false;
+        rivalData.right=false;
+        rivalData.center=false;
     }
 
     

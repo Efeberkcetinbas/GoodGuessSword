@@ -66,10 +66,18 @@ public class PlayerControl : MonoBehaviour
                     }
                     
                 }
+                EventManager.Broadcast(GameEvent.OnPlayerTouchScreen);
+                StartCoroutine(OnCallVersus());
             }
 
-            EventManager.Broadcast(GameEvent.OnPlayerTouchScreen);
+            
         }
+    }
+
+    private IEnumerator OnCallVersus()
+    {
+        yield return new WaitForSeconds(0.1f);
+        EventManager.Broadcast(GameEvent.OnDoVersus);
     }
 }
 
