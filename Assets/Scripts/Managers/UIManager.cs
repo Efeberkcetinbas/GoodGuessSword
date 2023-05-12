@@ -12,12 +12,18 @@ public class UIManager : MonoBehaviour
     public GameData gameData;
     public PlayerData playerData;
     public RivalData rivalData;
+    [Header("Player Control")]
+
 
     [Header("Rival Control")]
     public TextMeshProUGUI rivalHealthText;
     public TextMeshProUGUI rivalNameText;
     public TextMeshProUGUI rivalLevelText;
+
+    [SerializeField] private List<Sprite> specialsImage=new List<Sprite>();
+
     public Image RivalProgressBar;
+    public Image RivalImage;
 
     private void OnEnable()
     {
@@ -39,10 +45,17 @@ public class UIManager : MonoBehaviour
         score.transform.DOScale(new Vector3(1.5f,1.5f,1.5f),0.2f).OnComplete(()=>score.transform.DOScale(new Vector3(1,1f,1f),0.2f));
     }
 
+    void OnRivalUIUpdate()
+    {
+        rivalHealthText.SetText(rivalData.RivalHealth.ToString());
+        rivalHealthText.transform.DOScale(new Vector3(1.5f,1.5f,1.5f),0.2f).OnComplete(()=>score.transform.DOScale(new Vector3(1,1f,1f),0.2f));
+    }
+
     void OnRivalUpdate()
     {
         rivalNameText.SetText(rivalData.RivalsName.ToString());
         rivalHealthText.SetText(rivalData.RivalHealth.ToString() + " HP");
+        RivalImage.sprite=specialsImage[rivalData.index];
         RivalProgressBar.DOFillAmount((float)rivalData.RivalHealth/rivalData.TempHealth,0.1f);
     }
 

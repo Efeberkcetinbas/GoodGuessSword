@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   up: 0
   down: 0
-  left: 0
+  left: 1
   right: 0
-  center: 1
-  RivalHealth: 2
+  center: 0
+  RivalHealth: 12
   TempHealth: 22
   index: 0
   RivalsName: Box

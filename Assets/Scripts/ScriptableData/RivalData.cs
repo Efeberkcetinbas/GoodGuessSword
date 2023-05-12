@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
 [CreateAssetMenu(fileName = "RivalData", menuName = "Data/RivalData", order = 2)]
 public class RivalData : ScriptableObject 
 {
@@ -18,4 +17,5 @@ public class RivalData : ScriptableObject
     public int index;
     
     public string RivalsName;
+
 }
