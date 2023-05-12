@@ -44,25 +44,25 @@ public class VersusControl : MonoBehaviour
 
     private void DoDamageToRival()
     {
-        Debug.Log("RIVA SALDIRILDI");
-        gameData.isPlayersTurn=false;
+        EventManager.Broadcast(GameEvent.OnTakeRivalDamage);
+        //gameData.isPlayersTurn=false;
     }
 
     private void DoNotDamageToRival()
     {
-        Debug.Log("RIVALA SALDIRILMADI");
-        gameData.isPlayersTurn=false;
+        EventManager.Broadcast(GameEvent.OnPreventRivalDamage);
+        //gameData.isPlayersTurn=false;
     }
 
     private void DoDamageToPlayer()
     {
-        Debug.Log("PLAYERA SALDIRILDI");
+        EventManager.Broadcast(GameEvent.OnTakePlayerDamage);
         gameData.isRivalsTurn=false;
     }
 
     private void DoNotDamageToPlayer()
     {
-        Debug.Log("PLAYERA SALDIRILMADI");
+        EventManager.Broadcast(GameEvent.OnPreventPlayerDamage);
         gameData.isRivalsTurn=false;
     }
 

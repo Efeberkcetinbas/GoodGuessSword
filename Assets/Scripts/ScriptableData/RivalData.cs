@@ -12,4 +12,10 @@ public class RivalData : ScriptableObject
     public bool left;
     public bool right;
     public bool center;
+
+    public int RivalHealth;
+    public int TempHealth;
+    public int index;
+    
+    public string RivalsName;
 }

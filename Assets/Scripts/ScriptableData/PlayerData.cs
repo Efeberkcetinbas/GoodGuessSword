@@ -11,4 +11,6 @@ public class PlayerData : ScriptableObject
     public bool left;
     public bool right;
     public bool center;
+
+    public int MaxDamageAmount=10;
 }

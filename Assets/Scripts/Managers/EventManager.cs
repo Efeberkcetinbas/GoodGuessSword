@@ -12,6 +12,8 @@ public enum GameEvent
     OnPlayerLeft,
     OnPlayerRight,
     OnPlayerCenter,
+    OnTakePlayerDamage,
+    OnPreventPlayerDamage,
 
     //Rival
     OnRivalUp,
@@ -19,6 +21,10 @@ public enum GameEvent
     OnRivalLeft,
     OnRivalRight,
     OnRivalCenter,
+    OnTakeRivalDamage,
+    OnPreventRivalDamage,
+    OnRivalUpdate,
+    OnRivalDead,
 
 
     //Game Management
