@@ -88,6 +88,8 @@ public class GameManager : MonoBehaviour
         
         gameData.isPlayersTurn=true;
         gameData.isRivalsTurn=false;
+
+        gameData.isGameEnd=true;
     }
 
     

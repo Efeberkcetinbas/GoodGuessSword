@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   increaseScore: 0
-  isGameEnd: 0
+  isGameEnd: 1
   isPlayersTurn: 1
   isRivalsTurn: 0

@@ -6,6 +6,7 @@ public class RivalDamageControl : MonoBehaviour
 {
     public RivalData rivalData;
     public PlayerData playerData;
+    public GameData gameData;
 
     public List<GameObject> Rivals=new List<GameObject>();
 
@@ -49,6 +50,7 @@ public class RivalDamageControl : MonoBehaviour
         if(rivalData.RivalHealth<=0)
         {
             rivalData.index++;
+            gameData.isGameEnd=true;
             EventManager.Broadcast(GameEvent.OnRivalUpdate);
             EventManager.Broadcast(GameEvent.OnRivalDead);
             EventManager.Broadcast(GameEvent.OnNextLevel);

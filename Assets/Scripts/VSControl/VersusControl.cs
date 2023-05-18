@@ -10,12 +10,19 @@ public class VersusControl : MonoBehaviour
 
     private void OnEnable() 
     {
-        EventManager.AddHandler(GameEvent.OnDoVersus,OnDoVersus);    
+        EventManager.AddHandler(GameEvent.OnDoVersus,OnDoVersus);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnDoVersus,OnDoVersus);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+    }
+
+    private void OnNextLevel()
+    {
+        ChangeTurn(true,false);
     }
 
     private void OnDoVersus()

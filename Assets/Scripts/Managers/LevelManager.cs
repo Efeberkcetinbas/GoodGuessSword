@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class LevelManager : MonoBehaviour
 {
-
+    public GameData gameData;
     [Header("Fader")]
     public List<RectTransform> rectTransforms=new List<RectTransform>();
     public List<Vector3> movePoints=new List<Vector3>();
@@ -15,6 +15,8 @@ public class LevelManager : MonoBehaviour
 
 
     [SerializeField] private GameObject Fader;
+    [SerializeField] private RectTransform VsPanel;
+    [SerializeField] private GameObject CM1,CM2;
 
     private bool order=false;
 
@@ -41,6 +43,8 @@ public class LevelManager : MonoBehaviour
     private void OnDoFade()
     {
         Fader.SetActive(true);
+        VsPanel.DOScale(new Vector2(0,0),0.1f);
+        ChangeCameras(false,true);
         order=!order;
         
         for (int i = 0; i < rectTransforms.Count; i++)
@@ -48,18 +52,28 @@ public class LevelManager : MonoBehaviour
             if(order)
             {
                 rectTransforms[i].DOAnchorPos(movePoints[i],2).OnComplete(()=>{
-                Fader.SetActive(false);
+                    Fader.SetActive(false);
+                    gameData.isGameEnd=false;
+                    VsPanel.DOScale(new Vector2(1,1),0.3f);
+                    ChangeCameras(true,false);
                 });
             }
             else
             {
                 rectTransforms[i].DOAnchorPos(centerPoints[i],2).OnComplete(()=>{
                     Fader.SetActive(false);
+                    gameData.isGameEnd=false;
+                    VsPanel.DOScale(new Vector2(1,1),0.3f);
+                    ChangeCameras(true,false);
                 });
             }
-
-            
         }
+    }
+
+    private void ChangeCameras(bool cm1,bool cm2)
+    {
+        CM1.SetActive(cm1);
+        CM2.SetActive(cm2);
     }
 
     
