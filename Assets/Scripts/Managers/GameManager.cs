@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
         
         gameData.isPlayersTurn=true;
         gameData.isRivalsTurn=false;
+        //EventManager.Broadcast(GameEvent.OnPlayersTurn);
 
         gameData.isGameEnd=true;
     }

@@ -19,13 +19,11 @@ public class CameraManager : MonoBehaviour
 
     private void OnEnable() 
     {
-        EventManager.AddHandler(GameEvent.OnTargetHit,OnHit);
         EventManager.AddHandler(GameEvent.OnGameOver,GameOver);
     }
 
     private void OnDisable()
     {
-        EventManager.RemoveHandler(GameEvent.OnTargetHit,OnHit);
         EventManager.RemoveHandler(GameEvent.OnGameOver,GameOver);
     }
 

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   up: 0
   down: 0
-  left: 1
-  right: 0
+  left: 0
+  right: 1
   center: 0
-  RivalHealth: 40
-  TempHealth: 40
+  RivalHealth: 10
+  TempHealth: 10
   index: 0
-  MaxDamageAmount: 2
-  RivalsName: Capsule
+  MaxDamageAmount: 1
+  RivalsName: Cylinder

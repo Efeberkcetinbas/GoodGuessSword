@@ -68,7 +68,7 @@ public class VersusControl : MonoBehaviour
         EventManager.Broadcast(GameEvent.OnTakeRivalDamage);
         Debug.Log("DAMAGE RIVAL");
         ChangeTurn(false,true);
-        
+        EventManager.Broadcast(GameEvent.OnRivalsTurn);
     }
 
     private void DoNotDamageToRival()
@@ -76,6 +76,7 @@ public class VersusControl : MonoBehaviour
         EventManager.Broadcast(GameEvent.OnPreventRivalDamage);
         Debug.Log("NOT DAMAGE RIVAL");
         ChangeTurn(false,true);
+        EventManager.Broadcast(GameEvent.OnRivalsTurn);
     }
 
     private void DoDamageToPlayer()
@@ -83,6 +84,7 @@ public class VersusControl : MonoBehaviour
         EventManager.Broadcast(GameEvent.OnTakePlayerDamage);
         Debug.Log("DAMAGE PLAYER");
         ChangeTurn(true,false);
+        EventManager.Broadcast(GameEvent.OnPlayersTurn);
     }
 
     private void DoNotDamageToPlayer()
@@ -90,6 +92,7 @@ public class VersusControl : MonoBehaviour
         EventManager.Broadcast(GameEvent.OnPreventPlayerDamage);
         Debug.Log("NOT DAMAGE PLAYER");
         ChangeTurn(true,false);
+        EventManager.Broadcast(GameEvent.OnPlayersTurn);
     }
 
 
