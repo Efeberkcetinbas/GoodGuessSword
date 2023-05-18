@@ -9,6 +9,11 @@ public class RivalDamageControl : MonoBehaviour
 
     public List<GameObject> Rivals=new List<GameObject>();
 
+    [Header("Damage Effect")]
+    [SerializeField] private JumpingDamageEffect jumpingDamage;
+    [SerializeField] private Transform pointPos;
+    
+
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnTakeRivalDamage,OnTakeRivalDamage);
@@ -36,6 +41,7 @@ public class RivalDamageControl : MonoBehaviour
     {
         //Particles
         rivalData.RivalHealth-=playerData.MaxDamageAmount;
+        jumpingDamage.StartCoinMove(pointPos,"-",playerData.MaxDamageAmount,Color.red);
 
         //UI Managerda Rival icin
         EventManager.Broadcast(GameEvent.OnRivalUpdate);
@@ -45,6 +51,7 @@ public class RivalDamageControl : MonoBehaviour
             rivalData.index++;
             EventManager.Broadcast(GameEvent.OnRivalUpdate);
             EventManager.Broadcast(GameEvent.OnRivalDead);
+            EventManager.Broadcast(GameEvent.OnNextLevel);
         }
 
         for (int i = 0; i < Rivals.Count; i++)

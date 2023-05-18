@@ -13,6 +13,10 @@ public class PlayerTakeDamage : MonoBehaviour
     public PlayerData playerData;
     public RivalData rivalData;
 
+    [Header("Damage Effect")]
+    [SerializeField] private JumpingDamageEffect jumpingDamage;
+    [SerializeField] private Transform pointPos;
+
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnTakePlayerDamage,OnTakePlayerDamage);
@@ -30,6 +34,7 @@ public class PlayerTakeDamage : MonoBehaviour
         //damageParticle.Play();
         
         playerData.Health-=rivalData.MaxDamageAmount;
+        jumpingDamage.StartCoinMove(pointPos,"-",rivalData.MaxDamageAmount,Color.red);
         skinnedMeshRenderer.material.color=Color.red;
         transform.DOScale(Vector3.one*1.5f,0.2f).OnComplete(()=>transform.DOScale(Vector3.one,0.2f));
         Invoke("OnBackWhite",duration);

@@ -19,6 +19,16 @@ public class PlayerControl : MonoBehaviour
         CheckMove();
     }
 
+    private void OnEnable() 
+    {
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);    
+    }
+
+    private void OnDisable() 
+    {
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+    }
+
     private void OnNextLevel()
     {
         playerData.Health=playerData.TempHealth;

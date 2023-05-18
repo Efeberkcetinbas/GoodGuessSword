@@ -1,46 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
+
 
 public class LevelManager : MonoBehaviour
 {
 
-    [Header("Indexes")]
-    public int levelIndex;
-    
-    public List<GameObject> levels;
+    [Header("Fader")]
+    public List<RectTransform> rectTransforms=new List<RectTransform>();
+    public List<Vector3> movePoints=new List<Vector3>();
+    public List<Vector3> centerPoints=new List<Vector3>();
 
-    private void Start()
+
+    [SerializeField] private GameObject Fader;
+
+    private bool order=false;
+
+    private void Start() 
     {
-        LoadLevel();
+        OnNextLevel();
     }
-    private void LoadLevel()
+
+    private void OnEnable() 
     {
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+    }
 
+    private void OnDisable() 
+    {
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+    }
 
-        levelIndex = PlayerPrefs.GetInt("LevelNumber");
-        if (levelIndex == levels.Count) levelIndex = 0;
-        PlayerPrefs.SetInt("LevelNumber", levelIndex);
-       
+    private void OnNextLevel()
+    {
+        OnDoFade();
+    }
 
-        for (int i = 0; i < levels.Count; i++)
+    private void OnDoFade()
+    {
+        Fader.SetActive(true);
+        order=!order;
+        
+        for (int i = 0; i < rectTransforms.Count; i++)
         {
-            levels[i].SetActive(false);
+            if(order)
+            {
+                rectTransforms[i].DOAnchorPos(movePoints[i],2).OnComplete(()=>{
+                Fader.SetActive(false);
+                });
+            }
+            else
+            {
+                rectTransforms[i].DOAnchorPos(centerPoints[i],2).OnComplete(()=>{
+                    Fader.SetActive(false);
+                });
+            }
+
+            
         }
-        levels[levelIndex].SetActive(true);
-    }
-
-    public void LoadNextLevel()
-    {
-        PlayerPrefs.SetInt("LevelNumber", levelIndex + 1);
-        PlayerPrefs.SetInt("RealLevel", PlayerPrefs.GetInt("RealLevel", 0) + 1);
-        EventManager.Broadcast(GameEvent.OnNextLevel);
-        LoadLevel();
-    }
-
-    public void RestartLevel()
-    {
-        LoadLevel();
     }
 
     
