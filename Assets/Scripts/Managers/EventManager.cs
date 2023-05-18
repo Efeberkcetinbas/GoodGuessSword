@@ -14,6 +14,7 @@ public enum GameEvent
     OnPlayerCenter,
     OnTakePlayerDamage,
     OnPreventPlayerDamage,
+    OnPlayerUpdateHealth,
 
     //Rival
     OnRivalUp,

@@ -13,4 +13,6 @@ public class PlayerData : ScriptableObject
     public bool center;
 
     public int MaxDamageAmount=10;
+    public int Health=20;
+    public int TempHealth=20;
 }

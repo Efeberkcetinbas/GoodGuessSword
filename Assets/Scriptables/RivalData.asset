@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: RivalData
   m_EditorClassIdentifier: 
   up: 0
-  down: 0
-  left: 1
+  down: 1
+  left: 0
   right: 0
   center: 0
-  RivalHealth: 12
-  TempHealth: 22
+  RivalHealth: 19
+  TempHealth: 20
   index: 0
-  RivalsName: Box
+  RivalsName: Sphere

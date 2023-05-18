@@ -23,21 +23,35 @@ public class VersusControl : MonoBehaviour
         if(gameData.isPlayersTurn)
         {
             if((playerData.up && rivalData.up) || (playerData.down && rivalData.down) || (playerData.left && rivalData.left) || (playerData.right && rivalData.right) || playerData.center && rivalData.center)
+            {
                 DoNotDamageToRival();
+                return;
+            }
 
 
             else 
+            {
                 DoDamageToRival();
+                return;
+            }
+                
         }
 
         if(gameData.isRivalsTurn)
         {
             if((playerData.up && rivalData.up) || (playerData.down && rivalData.down) || (playerData.left && rivalData.left) || (playerData.right && rivalData.right) || playerData.center && rivalData.center)
+            {
                 DoNotDamageToPlayer();
+                return;
+            }
             
 
-            else 
+            else
+            {
                 DoDamageToPlayer();
+                return;
+            }
+                
         }
 
     }
@@ -45,26 +59,37 @@ public class VersusControl : MonoBehaviour
     private void DoDamageToRival()
     {
         EventManager.Broadcast(GameEvent.OnTakeRivalDamage);
-        //gameData.isPlayersTurn=false;
+        Debug.Log("DAMAGE RIVAL");
+        ChangeTurn(false,true);
+        
     }
 
     private void DoNotDamageToRival()
     {
         EventManager.Broadcast(GameEvent.OnPreventRivalDamage);
-        //gameData.isPlayersTurn=false;
+        Debug.Log("NOT DAMAGE RIVAL");
+        ChangeTurn(false,true);
     }
 
     private void DoDamageToPlayer()
     {
         EventManager.Broadcast(GameEvent.OnTakePlayerDamage);
-        gameData.isRivalsTurn=false;
+        Debug.Log("DAMAGE PLAYER");
+        ChangeTurn(true,false);
     }
 
     private void DoNotDamageToPlayer()
     {
         EventManager.Broadcast(GameEvent.OnPreventPlayerDamage);
-        gameData.isRivalsTurn=false;
+        Debug.Log("NOT DAMAGE PLAYER");
+        ChangeTurn(true,false);
     }
 
+
+    private void ChangeTurn(bool playerTurn,bool rivalTurn)
+    {
+        gameData.isPlayersTurn=playerTurn;
+        gameData.isRivalsTurn=rivalTurn;
+    }
     
 }

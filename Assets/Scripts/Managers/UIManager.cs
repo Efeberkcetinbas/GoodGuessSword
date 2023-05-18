@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     public PlayerData playerData;
     public RivalData rivalData;
     [Header("Player Control")]
+    public TextMeshProUGUI playerHealthText;
+    public Image PlayerProgressBar;
 
 
     [Header("Rival Control")]
@@ -30,12 +32,16 @@ public class UIManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnUIUpdate, OnUIUpdate);
         EventManager.AddHandler(GameEvent.OnRivalUpdate,OnRivalUpdate);
         EventManager.AddHandler(GameEvent.OnRivalDead,OnRivalDead);
+        EventManager.AddHandler(GameEvent.OnPlayerUpdateHealth,OnPlayerUIUpdate);
+        EventManager.AddHandler(GameEvent.OnTakePlayerDamage,OnPlayerUIUpdate);
     }
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnUIUpdate, OnUIUpdate);
         EventManager.RemoveHandler(GameEvent.OnRivalUpdate,OnRivalUpdate);
         EventManager.RemoveHandler(GameEvent.OnRivalDead,OnRivalDead);
+        EventManager.RemoveHandler(GameEvent.OnPlayerUpdateHealth,OnPlayerUIUpdate);
+        EventManager.RemoveHandler(GameEvent.OnTakePlayerDamage,OnPlayerUIUpdate);
     }
 
     
@@ -43,6 +49,12 @@ public class UIManager : MonoBehaviour
     {
         score.SetText(gameData.score.ToString());
         score.transform.DOScale(new Vector3(1.5f,1.5f,1.5f),0.2f).OnComplete(()=>score.transform.DOScale(new Vector3(1,1f,1f),0.2f));
+    }
+
+    void OnPlayerUIUpdate()
+    {
+        playerHealthText.SetText(playerData.Health.ToString()+ " HP");
+        PlayerProgressBar.DOFillAmount((float) playerData.Health/playerData.TempHealth,0.1f);
     }
 
     void OnRivalUIUpdate()

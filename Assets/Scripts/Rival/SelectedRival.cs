@@ -5,6 +5,7 @@ public class SelectedRival : MonoBehaviour
 {
     [SerializeField] private string specialName;
     [SerializeField] private int specialHealth;
+    [SerializeField] private int damageAmount;
 
     public RivalData rivalData;
 
@@ -26,6 +27,7 @@ public class SelectedRival : MonoBehaviour
         rivalData.RivalsName=specialName;
         rivalData.RivalHealth=specialHealth;
         rivalData.TempHealth=specialHealth;
+        rivalData.MaxDamageAmount=damageAmount;
         //StartCoroutine(WaitForBoss());
         EventManager.Broadcast(GameEvent.OnRivalUpdate);
     }
@@ -46,5 +48,6 @@ public class SelectedRival : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         rivalData.RivalsName=specialName;
         rivalData.RivalHealth=specialHealth;
+        rivalData.MaxDamageAmount=damageAmount;
     }
 }

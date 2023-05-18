@@ -15,6 +15,7 @@ public class RivalData : ScriptableObject
     public int RivalHealth;
     public int TempHealth;
     public int index;
+    public int MaxDamageAmount=1;
     
     public string RivalsName;
 

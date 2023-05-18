@@ -85,6 +85,9 @@ public class GameManager : MonoBehaviour
         rivalData.left=false;
         rivalData.right=false;
         rivalData.center=false;
+        
+        gameData.isPlayersTurn=true;
+        gameData.isRivalsTurn=false;
     }
 
     

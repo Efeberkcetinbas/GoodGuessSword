@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   up: 0
-  down: 0
+  down: 1
   left: 0
   right: 0
   center: 0
+  MaxDamageAmount: 1

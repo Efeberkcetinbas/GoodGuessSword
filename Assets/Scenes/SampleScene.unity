@@ -1264,6 +1264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   specialName: Box
   specialHealth: 22
+  damageAmount: 3
   rivalData: {fileID: 11400000, guid: 76a993525c2e2eb438946cf1492dd030, type: 2}
 --- !u!136 &1080618927
 CapsuleCollider:
@@ -1459,6 +1460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   specialName: Capsule
   specialHealth: 40
+  damageAmount: 2
   rivalData: {fileID: 11400000, guid: 76a993525c2e2eb438946cf1492dd030, type: 2}
 --- !u!1 &1338695229
 GameObject:
@@ -1776,6 +1778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   specialName: Sphere
   specialHealth: 20
+  damageAmount: 3
   rivalData: {fileID: 11400000, guid: 76a993525c2e2eb438946cf1492dd030, type: 2}
 --- !u!1 &1539931541
 GameObject:
@@ -2564,6 +2567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   specialName: Cylinder
   specialHealth: 30
+  damageAmount: 1
   rivalData: {fileID: 11400000, guid: 76a993525c2e2eb438946cf1492dd030, type: 2}
 --- !u!1 &1887910174
 GameObject:
@@ -2615,6 +2619,8 @@ MonoBehaviour:
   gameData: {fileID: 11400000, guid: eda836fd769909c4aa29baeb0924b9ac, type: 2}
   playerData: {fileID: 11400000, guid: c83a5e0c48e4d8341942200f78bdf393, type: 2}
   rivalData: {fileID: 11400000, guid: 76a993525c2e2eb438946cf1492dd030, type: 2}
+  playerHealthText: {fileID: 1065980527}
+  PlayerProgressBar: {fileID: 904773455}
   rivalHealthText: {fileID: 1921550593}
   rivalNameText: {fileID: 1539931543}
   rivalLevelText: {fileID: 697172569}
@@ -2638,6 +2644,7 @@ GameObject:
   - component: {fileID: 1920411731}
   - component: {fileID: 1920411735}
   - component: {fileID: 1920411734}
+  - component: {fileID: 1920411736}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2736,6 +2743,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: eda836fd769909c4aa29baeb0924b9ac, type: 2}
+  playerData: {fileID: 11400000, guid: c83a5e0c48e4d8341942200f78bdf393, type: 2}
+--- !u!114 &1920411736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920411730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8124a1ee5add314eb6898d1250a2c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMeshRenderer: {fileID: 1920411731}
+  damageParticle: {fileID: 0}
+  shieldParticle: {fileID: 0}
+  duration: 0.2
+  playerData: {fileID: 11400000, guid: c83a5e0c48e4d8341942200f78bdf393, type: 2}
+  rivalData: {fileID: 11400000, guid: 76a993525c2e2eb438946cf1492dd030, type: 2}
 --- !u!1 &1921550591
 GameObject:
   m_ObjectHideFlags: 0

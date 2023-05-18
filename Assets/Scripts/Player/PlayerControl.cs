@@ -8,10 +8,21 @@ public class PlayerControl : MonoBehaviour
     private Vector3 lastPosition;
 
     public GameData gameData;
+    public PlayerData playerData;
 
+    void Start()
+    {
+        OnNextLevel();
+    }
     void Update()
     {
         CheckMove();
+    }
+
+    private void OnNextLevel()
+    {
+        playerData.Health=playerData.TempHealth;
+        EventManager.Broadcast(GameEvent.OnPlayerUpdateHealth);
     }
 
     private void CheckMove()
@@ -79,6 +90,8 @@ public class PlayerControl : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         EventManager.Broadcast(GameEvent.OnDoVersus);
     }
+
+    
 }
 
   
