@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class RivalTakeDamage : MonoBehaviour
 {
-    [SerializeField] private MeshRenderer skinnedMeshRenderer;
+    [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
 
     [SerializeField] private ParticleSystem damageParticle,shieldParticle;
     [SerializeField] private float duration=0.2f;

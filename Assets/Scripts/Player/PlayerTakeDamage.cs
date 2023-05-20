@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class PlayerTakeDamage : MonoBehaviour
 {
-    [SerializeField] private MeshRenderer skinnedMeshRenderer;
+    [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
 
     [SerializeField] private ParticleSystem damageParticle,shieldParticle;
     [SerializeField] private float duration=0.2f;
@@ -21,6 +21,7 @@ public class PlayerTakeDamage : MonoBehaviour
     {
         EventManager.AddHandler(GameEvent.OnTakePlayerDamage,OnTakePlayerDamage);
         EventManager.AddHandler(GameEvent.OnPreventPlayerDamage,OnPreventPlayerDamage);
+        //Damage Direk Olmayacak. Top Carptigi Zaman Olacak.
     }
 
     private void OnDisable() 
