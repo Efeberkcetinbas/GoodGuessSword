@@ -9,6 +9,7 @@ public class PlayerTakeDamage : MonoBehaviour
 
     [SerializeField] private ParticleSystem damageParticle,shieldParticle;
     [SerializeField] private float duration=0.2f;
+    [SerializeField] private Animator animator;
 
     public PlayerData playerData;
     public RivalData rivalData;
@@ -37,14 +38,16 @@ public class PlayerTakeDamage : MonoBehaviour
         playerData.Health-=rivalData.MaxDamageAmount;
         jumpingDamage.StartCoinMove(pointPos,"-",rivalData.MaxDamageAmount,Color.red);
         skinnedMeshRenderer.material.color=Color.red;
-        transform.DOScale(Vector3.one*1.5f,0.2f).OnComplete(()=>transform.DOScale(Vector3.one,0.2f));
+        animator.SetTrigger("GetDamage");
+        //transform.DOScale(Vector3.one*1.5f,0.2f).OnComplete(()=>transform.DOScale(Vector3.one,0.2f));
         Invoke("OnBackWhite",duration);
     }
 
     private void OnPreventPlayerDamage()
     {
         //shieldParticle.Play();
-        transform.DOScale(Vector3.one*1.5f,0.2f).OnComplete(()=>transform.DOScale(Vector3.one,0.2f));
+        animator.SetTrigger("NotDamage");
+        //transform.DOScale(Vector3.one*1.5f,0.2f).OnComplete(()=>transform.DOScale(Vector3.one,0.2f));
     }
 
     private void OnBackWhite()

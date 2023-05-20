@@ -10,6 +10,8 @@ public class PlayerControl : MonoBehaviour
     public GameData gameData;
     public PlayerData playerData;
 
+    [SerializeField] private Animator animator;
+
     void Start()
     {
         OnNextLevel();

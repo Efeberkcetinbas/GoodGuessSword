@@ -9,6 +9,10 @@ public class SelectedRival : MonoBehaviour
 
     public RivalData rivalData;
 
+    /*Hepsinde ortak ozellikli animasyon istiyorsan Genel Rivala Ekle.
+    Ama buraya ekleyerek farklı animasyon tepkileri de eklemis oluyorsun */
+
+
     
     private void OnEnable() 
     {

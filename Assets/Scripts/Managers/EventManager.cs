@@ -27,6 +27,9 @@ public enum GameEvent
     OnRivalUpdate,
     OnRivalDead,
 
+    //Platform
+    OnResetHoles,
+
 
     //Game Management
     OnIncreaseScore,
