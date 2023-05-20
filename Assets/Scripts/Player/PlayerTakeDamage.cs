@@ -7,7 +7,7 @@ public class PlayerTakeDamage : MonoBehaviour
 {
     [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
 
-    [SerializeField] private ParticleSystem damageParticle,shieldParticle;
+    [SerializeField] private ParticleSystem shieldParticle;
     [SerializeField] private float duration=0.2f;
     [SerializeField] private Animator animator;
 
@@ -46,7 +46,7 @@ public class PlayerTakeDamage : MonoBehaviour
 
     private void OnPreventPlayerDamage()
     {
-        //shieldParticle.Play();
+        shieldParticle.Play();
         animator.SetTrigger("NotDamage");
         //transform.DOScale(Vector3.one*1.5f,0.2f).OnComplete(()=>transform.DOScale(Vector3.one,0.2f));
     }

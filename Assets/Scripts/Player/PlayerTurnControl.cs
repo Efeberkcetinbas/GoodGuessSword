@@ -26,6 +26,7 @@ public class PlayerTurnControl : MonoBehaviour
         ChangeTurn(false,false);
         yield return new WaitForSeconds(2);
         ChangeTurn(true,false);
+        EventManager.Broadcast(GameEvent.OnResetHoles);
     }
 
     private void ChangeTurn(bool playerTurn,bool rivalTurn)

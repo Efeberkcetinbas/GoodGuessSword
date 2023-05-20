@@ -35,6 +35,7 @@ public enum GameEvent
     OnIncreaseScore,
     OnDoVersus,
     OnHit,
+    OnBallSpawn,
     OnPlayersTurn,
     OnRivalsTurn,
     OnUIUpdate,

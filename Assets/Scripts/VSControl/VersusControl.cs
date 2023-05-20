@@ -87,6 +87,8 @@ public class VersusControl : MonoBehaviour
     private void SpawnBall(int index,Transform target)
     {
         GameObject ball=Instantiate(Ball,SpawnPos[index].position,Ball.transform.rotation);
+        EventManager.Broadcast(GameEvent.OnBallSpawn);
+        SpawnPos[index].GetChild(0).GetComponent<ParticleSystem>().Play();
         ball.transform.DOScale(Vector3.one*4,1f);
         ball.transform.DOLocalJump(new Vector3(target.position.x,target.position.y,target.position.z),1,1
         ,1f).OnComplete(()=>Destroy(ball));

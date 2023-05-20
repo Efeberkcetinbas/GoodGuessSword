@@ -36,17 +36,26 @@ public class CameraManager : MonoBehaviour
     {
         EventManager.AddHandler(GameEvent.OnGameOver,GameOver);
         EventManager.AddHandler(GameEvent.OnHit,OnHit);
+        EventManager.AddHandler(GameEvent.OnBallSpawn,OnBallSpawn);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnGameOver,GameOver);
         EventManager.RemoveHandler(GameEvent.OnHit,OnHit);
+        EventManager.RemoveHandler(GameEvent.OnBallSpawn,OnBallSpawn);
     }
 
     void OnHit()
     {
         Noise();
+    }
+
+    void OnBallSpawn()
+    {
+        noise.m_AmplitudeGain = 3;
+        noise.m_FrequencyGain = 3;
+        StartCoroutine(ResetNoise(0.2f));
     }
 
     public void Noise() 
