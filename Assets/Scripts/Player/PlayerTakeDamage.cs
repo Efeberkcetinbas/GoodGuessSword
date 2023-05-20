@@ -22,13 +22,14 @@ public class PlayerTakeDamage : MonoBehaviour
     {
         EventManager.AddHandler(GameEvent.OnTakePlayerDamage,OnTakePlayerDamage);
         EventManager.AddHandler(GameEvent.OnPreventPlayerDamage,OnPreventPlayerDamage);
-        //Damage Direk Olmayacak. Top Carptigi Zaman Olacak.
+        EventManager.AddHandler(GameEvent.OnTakeRivalDamage,OnTakeRivalDamage);
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnTakePlayerDamage,OnTakePlayerDamage);
         EventManager.RemoveHandler(GameEvent.OnPreventPlayerDamage,OnPreventPlayerDamage);
+        EventManager.RemoveHandler(GameEvent.OnTakeRivalDamage,OnTakeRivalDamage);
     }
 
     private void OnTakePlayerDamage()
@@ -53,5 +54,10 @@ public class PlayerTakeDamage : MonoBehaviour
     private void OnBackWhite()
     {
         skinnedMeshRenderer.material.color=Color.white;
+    }
+
+    private void OnTakeRivalDamage()
+    {
+        animator.SetTrigger("NotDamage");
     }
 }

@@ -55,6 +55,7 @@ public class VersusControl : MonoBehaviour
             else 
             {
                 PlayerBallSpawn();
+                SelectHole();
                 DoDamageToRival();
                 return;
             }
@@ -74,6 +75,7 @@ public class VersusControl : MonoBehaviour
             else
             {
                 RivalBallSpawn();
+                SelectHole();
                 DoDamageToPlayer();
                 return;
             }
@@ -87,7 +89,7 @@ public class VersusControl : MonoBehaviour
         GameObject ball=Instantiate(Ball,SpawnPos[index].position,Ball.transform.rotation);
         ball.transform.DOScale(Vector3.one*4,1f);
         ball.transform.DOLocalJump(new Vector3(target.position.x,target.position.y,target.position.z),1,1
-        ,1f);
+        ,1f).OnComplete(()=>Destroy(ball));
         
     }
 
@@ -117,7 +119,7 @@ public class VersusControl : MonoBehaviour
         for (int i = 0; i < ClosedHoles.Count; i++)
         {
             Debug.Log("WORK WORK");
-            ClosedHoles[i].transform.DOScale(Vector3.zero,0.25f);
+            ClosedHoles[i].transform.DOScale(Vector3.zero,0.1f);
         }
     }
     private void RivalBallSpawn()
@@ -141,11 +143,11 @@ public class VersusControl : MonoBehaviour
     private void DoDamageToRival()
     {
         //Burada bunu yapmayacagiz. Instantiate ball olayi burada olacak. Ve Ball Rival'a Gidicek. Ball Obstacle Collide yapinca orada bu alttakileri yapacagiz.
-        EventManager.Broadcast(GameEvent.OnTakeRivalDamage);
+        /*EventManager.Broadcast(GameEvent.OnTakeRivalDamage);
         Debug.Log("DAMAGE RIVAL");
-        //ChangeTurn(false,true);
+        ChangeTurn(false,true);
         playerAnima.SetTrigger("NotDamage");
-        EventManager.Broadcast(GameEvent.OnRivalsTurn);
+        EventManager.Broadcast(GameEvent.OnRivalsTurn);*/
     }
 
     private void DoNotDamageToRival()
@@ -154,17 +156,16 @@ public class VersusControl : MonoBehaviour
         Debug.Log("NOT DAMAGE RIVAL");
         playerAnima.SetTrigger("Fail");
         //ChangeTurn(false,true);
-        //Burada da hayal kirikligi olur.
         EventManager.Broadcast(GameEvent.OnRivalsTurn);
     }
 
     private void DoDamageToPlayer()
     {
-        EventManager.Broadcast(GameEvent.OnTakePlayerDamage);
+        /*EventManager.Broadcast(GameEvent.OnTakePlayerDamage);
         Debug.Log("DAMAGE PLAYER");
-        //ChangeTurn(true,false);
+        ChangeTurn(true,false);
         rivalAnim.SetTrigger("NotDamage");
-        EventManager.Broadcast(GameEvent.OnPlayersTurn);
+        EventManager.Broadcast(GameEvent.OnPlayersTurn);*/
     }
 
     private void DoNotDamageToPlayer()

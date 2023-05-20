@@ -34,6 +34,7 @@ public enum GameEvent
     //Game Management
     OnIncreaseScore,
     OnDoVersus,
+    OnHit,
     OnPlayersTurn,
     OnRivalsTurn,
     OnUIUpdate,

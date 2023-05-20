@@ -55,5 +55,6 @@ public class PlayerSelectDirection : MonoBehaviour
         playerData.left=left;
         playerData.right=right;
         playerData.center=center;
+
     }
 }

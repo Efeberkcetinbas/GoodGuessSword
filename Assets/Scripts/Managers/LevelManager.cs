@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using Cinemachine;
 
 
 public class LevelManager : MonoBehaviour
@@ -16,7 +17,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private GameObject Fader;
     [SerializeField] private RectTransform VsPanel;
-    [SerializeField] private GameObject CM1,CM2;
+    [SerializeField] private CinemachineVirtualCamera CM1,CM2;
 
     private bool order=false;
 
@@ -44,7 +45,7 @@ public class LevelManager : MonoBehaviour
     {
         Fader.SetActive(true);
         VsPanel.DOScale(new Vector2(0,0),0.1f);
-        ChangeCameras(false,true);
+        ChangeCameras(10,11);
         order=!order;
         
         for (int i = 0; i < rectTransforms.Count; i++)
@@ -55,7 +56,7 @@ public class LevelManager : MonoBehaviour
                     Fader.SetActive(false);
                     gameData.isGameEnd=false;
                     VsPanel.DOScale(new Vector2(1,1),0.3f);
-                    ChangeCameras(true,false);
+                    ChangeCameras(11,10);
                 });
             }
             else
@@ -64,16 +65,16 @@ public class LevelManager : MonoBehaviour
                     Fader.SetActive(false);
                     gameData.isGameEnd=false;
                     VsPanel.DOScale(new Vector2(1,1),0.3f);
-                    ChangeCameras(true,false);
+                    ChangeCameras(11,10);
                 });
             }
         }
     }
 
-    private void ChangeCameras(bool cm1,bool cm2)
+    private void ChangeCameras(int cm1, int cm2)
     {
-        CM1.SetActive(cm1);
-        CM2.SetActive(cm2);
+        CM1.m_Priority=cm1;
+        CM2.m_Priority=cm2;
     }
 
     

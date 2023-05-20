@@ -16,12 +16,14 @@ public class RivalTakeDamage : MonoBehaviour
     {
         EventManager.AddHandler(GameEvent.OnTakeRivalDamage,OnTakeRivalDamage);
         EventManager.AddHandler(GameEvent.OnPreventRivalDamage,OnPreventRivalDamage);
+        EventManager.AddHandler(GameEvent.OnTakePlayerDamage,OnTakePlayerDamage);
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnTakeRivalDamage,OnTakeRivalDamage);
         EventManager.RemoveHandler(GameEvent.OnPreventRivalDamage,OnPreventRivalDamage);
+        EventManager.RemoveHandler(GameEvent.OnTakePlayerDamage,OnTakePlayerDamage);
     }
 
     private void OnTakeRivalDamage()
@@ -43,5 +45,10 @@ public class RivalTakeDamage : MonoBehaviour
     private void OnBackWhite()
     {
         skinnedMeshRenderer.material.color=Color.white;
+    }
+
+    private void OnTakePlayerDamage()
+    {
+        animator.SetTrigger("NotDamage");
     }
 }
