@@ -34,13 +34,12 @@ public class PlayerTakeDamage : MonoBehaviour
 
     private void OnTakePlayerDamage()
     {
-        //damageParticle.Play();
         
         playerData.Health-=rivalData.MaxDamageAmount;
         jumpingDamage.StartCoinMove(pointPos,"-",rivalData.MaxDamageAmount,Color.red);
         skinnedMeshRenderer.material.color=Color.red;
+        EventManager.Broadcast(GameEvent.OnGeneralTakeDamage);
         animator.SetTrigger("GetDamage");
-        //transform.DOScale(Vector3.one*1.5f,0.2f).OnComplete(()=>transform.DOScale(Vector3.one,0.2f));
         Invoke("OnBackWhite",duration);
     }
 
@@ -48,7 +47,7 @@ public class PlayerTakeDamage : MonoBehaviour
     {
         shieldParticle.Play();
         animator.SetTrigger("NotDamage");
-        //transform.DOScale(Vector3.one*1.5f,0.2f).OnComplete(()=>transform.DOScale(Vector3.one,0.2f));
+        EventManager.Broadcast(GameEvent.OnGeneralPreventDamage);
     }
 
     private void OnBackWhite()

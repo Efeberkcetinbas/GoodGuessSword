@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public AudioClip GameLoop,BuffMusic;
-    public AudioClip HitSound1,HitSound2,GameOverSound;
+    public AudioClip GameOverSound,ImpactSound,CannonSound,ShieldSound;
 
     AudioSource musicSource,effectSource;
 
@@ -23,24 +23,38 @@ public class AudioManager : MonoBehaviour
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnGameOver,OnGameOver);
+        EventManager.AddHandler(GameEvent.OnGeneralTakeDamage,OnGeneralTakeDamage);
+        EventManager.AddHandler(GameEvent.OnGeneralPreventDamage,OnGeneralPreventDamage);
+        EventManager.AddHandler(GameEvent.OnBallSpawn,OnBallSpawn);
     }
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnGameOver,OnGameOver);
+        EventManager.RemoveHandler(GameEvent.OnGeneralTakeDamage,OnGeneralTakeDamage);
+        EventManager.RemoveHandler(GameEvent.OnGeneralPreventDamage,OnGeneralPreventDamage);
+        EventManager.RemoveHandler(GameEvent.OnBallSpawn,OnBallSpawn);
     }
 
-    void OnHit()
-    {
-        hit=!hit;
-        if(hit)
-            effectSource.PlayOneShot(HitSound1);
-        else
-            effectSource.PlayOneShot(HitSound2);
-    }
-
+    
     void OnGameOver()
     {
         effectSource.PlayOneShot(GameOverSound);
     }
+
+    private void OnGeneralTakeDamage()
+    {
+        effectSource.PlayOneShot(ImpactSound);
+    }
+
+    private void OnGeneralPreventDamage()
+    {
+        effectSource.PlayOneShot(ShieldSound);
+    }
+
+    private void OnBallSpawn()
+    {
+        effectSource.PlayOneShot(CannonSound);
+    }
+    
 
 }

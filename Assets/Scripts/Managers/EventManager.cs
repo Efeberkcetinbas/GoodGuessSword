@@ -26,6 +26,10 @@ public enum GameEvent
     OnRivalUpdate,
     OnRivalDead,
 
+    //Both
+    OnGeneralTakeDamage,
+    OnGeneralPreventDamage,
+
     //Platform
     OnResetHoles,
 

@@ -30,6 +30,7 @@ public class RivalTakeDamage : MonoBehaviour
     {
         //damageParticle.Play();
         animator.SetTrigger("GetDamage");
+        EventManager.Broadcast(GameEvent.OnGeneralTakeDamage);
         skinnedMeshRenderer.material.color=Color.red;
         transform.DOScale(Vector3.one*1.5f,0.2f).OnComplete(()=>transform.DOScale(Vector3.one,0.2f));
         Invoke("OnBackWhite",duration);
@@ -38,6 +39,7 @@ public class RivalTakeDamage : MonoBehaviour
     private void OnPreventRivalDamage()
     {
         animator.SetTrigger("NotDamage");
+        EventManager.Broadcast(GameEvent.OnGeneralPreventDamage);
         shieldParticle.Play();
         //transform.DOScale(Vector3.one*1.5f,0.2f).OnComplete(()=>transform.DOScale(Vector3.one,0.2f));
     }
