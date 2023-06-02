@@ -16,9 +16,9 @@ MonoBehaviour:
   down: 0
   left: 0
   right: 0
-  center: 1
+  center: 0
   RivalHealth: 10
   TempHealth: 10
   index: 0
   MaxDamageAmount: 1
-  RivalsName: Cylinder
+  RivalsName: Sphere
