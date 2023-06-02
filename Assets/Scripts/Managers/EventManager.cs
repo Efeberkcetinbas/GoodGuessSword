@@ -5,7 +5,6 @@ using UnityEngine;
 public enum GameEvent
 {
     //Player
-    OnTargetHit,
     OnPlayerTouchScreen,
     OnPlayerUp,
     OnPlayerDown,
