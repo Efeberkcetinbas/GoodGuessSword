@@ -35,6 +35,8 @@ public class VersusControl : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnResetHoles,OnResetHoles);
     }
 
+    
+
     private void OnNextLevel()
     {
         ChangeTurn(true,false);
