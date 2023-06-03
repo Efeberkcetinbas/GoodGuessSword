@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   up: 0
-  down: 1
+  down: 0
   left: 0
   right: 0
   center: 0
   MaxDamageAmount: 1
+  Health: 10
+  TempHealth: 10

@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnRivalUpdate,OnRivalUpdate);
         EventManager.AddHandler(GameEvent.OnRivalDead,OnRivalDead);
         EventManager.AddHandler(GameEvent.OnPlayerUpdateHealth,OnPlayerUIUpdate);
-        EventManager.AddHandler(GameEvent.OnTakePlayerDamage,OnPlayerUIUpdate);
+        //EventManager.AddHandler(GameEvent.OnTakePlayerDamage,OnPlayerUIUpdate);
     }
     private void OnDisable()
     {
@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnRivalUpdate,OnRivalUpdate);
         EventManager.RemoveHandler(GameEvent.OnRivalDead,OnRivalDead);
         EventManager.RemoveHandler(GameEvent.OnPlayerUpdateHealth,OnPlayerUIUpdate);
-        EventManager.RemoveHandler(GameEvent.OnTakePlayerDamage,OnPlayerUIUpdate);
+        //EventManager.RemoveHandler(GameEvent.OnTakePlayerDamage,OnPlayerUIUpdate);
     }
 
     

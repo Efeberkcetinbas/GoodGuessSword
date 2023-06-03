@@ -36,6 +36,7 @@ public class PlayerTakeDamage : MonoBehaviour
     {
         
         playerData.Health-=rivalData.MaxDamageAmount;
+        EventManager.Broadcast(GameEvent.OnPlayerUpdateHealth);
         jumpingDamage.StartCoinMove(pointPos,"-",rivalData.MaxDamageAmount,Color.red);
         skinnedMeshRenderer.material.color=Color.red;
         EventManager.Broadcast(GameEvent.OnGeneralTakeDamage);
