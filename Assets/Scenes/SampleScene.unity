@@ -14724,6 +14724,38 @@ Transform:
   m_Father: {fileID: 310027764}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1406151639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1406151640}
+  m_Layer: 0
+  m_Name: ConquererWorld
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1406151640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406151639}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -40, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7731754757839615924}
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1410178926
 GameObject:
   m_ObjectHideFlags: 0
@@ -53879,6 +53911,72 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &7731754757839615923
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1406151640}
+    m_Modifications:
+    - target: {fileID: 4667617653709632969, guid: 166c159a162afdc46b42018c2d0edf69, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667617653709632969, guid: 166c159a162afdc46b42018c2d0edf69, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667617653709632969, guid: 166c159a162afdc46b42018c2d0edf69, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667617653709632969, guid: 166c159a162afdc46b42018c2d0edf69, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667617653709632969, guid: 166c159a162afdc46b42018c2d0edf69, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667617653709632969, guid: 166c159a162afdc46b42018c2d0edf69, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667617653709632969, guid: 166c159a162afdc46b42018c2d0edf69, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667617653709632969, guid: 166c159a162afdc46b42018c2d0edf69, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667617653709632969, guid: 166c159a162afdc46b42018c2d0edf69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667617653709632969, guid: 166c159a162afdc46b42018c2d0edf69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667617653709632969, guid: 166c159a162afdc46b42018c2d0edf69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7287426203073038353, guid: 166c159a162afdc46b42018c2d0edf69, type: 3}
+      propertyPath: m_Name
+      value: Tile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731754758133999813, guid: 166c159a162afdc46b42018c2d0edf69, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 963194227}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 166c159a162afdc46b42018c2d0edf69, type: 3}
+--- !u!4 &7731754757839615924 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4667617653709632969, guid: 166c159a162afdc46b42018c2d0edf69, type: 3}
+  m_PrefabInstance: {fileID: 7731754757839615923}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7757252624205197942
 GameObject:
   m_ObjectHideFlags: 0
