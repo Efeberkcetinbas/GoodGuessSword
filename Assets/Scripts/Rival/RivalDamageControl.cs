@@ -59,6 +59,7 @@ public class RivalDamageControl : MonoBehaviour
 
         RivalsCharacters[rivalData.index].SetActive(true);
         RivalsModels[rivalData.index].SetActive(true);
+        EventManager.Broadcast(GameEvent.OnUpdateRivalArmy);
     }
 
     private void OnRivalDeadEffect()

@@ -26,6 +26,7 @@ public enum GameEvent
     OnRivalDeadEffect,
     OnRivalUpdate,
     OnRivalDead,
+    OnUpdateRivalArmy,
 
     //Both
     OnGeneralTakeDamage,
@@ -40,6 +41,7 @@ public enum GameEvent
     OnGameStart,
     OnDoVersus,
     OnHit,
+    OnMapUIUpdate,
     OnBallSpawn,
     OnPlayersTurn,
     OnRivalsTurn,

@@ -38,17 +38,17 @@ public class RivalArmy : MonoBehaviour
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnTakeRivalDamage,OnTakeRivalDamage);
-        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.AddHandler(GameEvent.OnUpdateRivalArmy,OnUpdateRivalArmy);
         
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnTakeRivalDamage,OnTakeRivalDamage);
-        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.RemoveHandler(GameEvent.OnUpdateRivalArmy,OnUpdateRivalArmy);
     }
 
-    private void OnNextLevel()
+    private void OnUpdateRivalArmy()
     {
         SetFormation();
     }
@@ -79,6 +79,8 @@ public class RivalArmy : MonoBehaviour
             _spawnedUnits[i].transform.position = Vector3.MoveTowards(_spawnedUnits[i].transform.position, transform.position + _points[i], _unitSpeed * Time.deltaTime);
         }
     }
+
+    
 
     private void Spawn(IEnumerable<Vector3> points) {
         foreach (var pos in points) {

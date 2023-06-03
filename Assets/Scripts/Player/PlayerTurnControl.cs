@@ -17,7 +17,6 @@ public class PlayerTurnControl : MonoBehaviour
 
     private void OnPlayersTurn()
     {
-        Debug.Log("PLAYER TURN BEGIN");
         StartCoroutine(PlayersTurn());
     }
 

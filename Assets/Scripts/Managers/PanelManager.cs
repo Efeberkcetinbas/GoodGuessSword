@@ -37,7 +37,7 @@ public class PanelManager : MonoBehaviour
     
     private void Update() 
     {
-        if(oneTime)
+        /*if(oneTime)
         {
             if(Input.touchCount>=1 && Input.GetTouch(0).position.y>Screen.height/2.5f)
             {
@@ -46,7 +46,7 @@ public class PanelManager : MonoBehaviour
                 VsPanel.DOScale(Vector2.one,0.2f).OnComplete(()=>EventManager.Broadcast(GameEvent.OnGameStart));
                 oneTime=false;
             }
-        }
+        }*/
     }
 
     private void GameStart()
@@ -111,6 +111,7 @@ public class PanelManager : MonoBehaviour
         StartPanel.DOAnchorPos(new Vector2(StartX,StartY),duration).OnComplete(()=>StartPanel.gameObject.SetActive(false));
         MapPanel.gameObject.SetActive(true);
         MapPanel.DOAnchorPos(Vector2.zero,duration);
+        EventManager.Broadcast(GameEvent.OnMapUIUpdate);
     }
 
     public void BackToStart(bool isOnCharacter)

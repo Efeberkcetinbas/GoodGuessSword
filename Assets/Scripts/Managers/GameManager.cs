@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
         successMenu.transform.localScale=Vector3.zero;
         successMenu.SetActive(false);
         ResetDirections();
+        gameData.levelIndex++;
+        EventManager.Broadcast(GameEvent.OnMapUIUpdate);
     }
 
     void OnIncreaseScore()

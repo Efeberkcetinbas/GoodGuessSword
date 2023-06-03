@@ -58,7 +58,6 @@ public class VersusControl : MonoBehaviour
             {
                 PlayerBallSpawn();
                 SelectHole();
-                DoDamageToRival();
                 return;
             }
                 
@@ -78,7 +77,6 @@ public class VersusControl : MonoBehaviour
             {
                 RivalBallSpawn();
                 SelectHole();
-                DoDamageToPlayer();
                 return;
             }
                 
@@ -144,40 +142,21 @@ public class VersusControl : MonoBehaviour
         if(playerData.center) SpawnBall(4,RivalTarget);
     }
 
-    private void DoDamageToRival()
-    {
-        //Burada bunu yapmayacagiz. Instantiate ball olayi burada olacak. Ve Ball Rival'a Gidicek. Ball Obstacle Collide yapinca orada bu alttakileri yapacagiz.
-        /*EventManager.Broadcast(GameEvent.OnTakeRivalDamage);
-        Debug.Log("DAMAGE RIVAL");
-        ChangeTurn(false,true);
-        playerAnima.SetTrigger("NotDamage");
-        EventManager.Broadcast(GameEvent.OnRivalsTurn);*/
-    }
+    
 
     private void DoNotDamageToRival()
     {
         EventManager.Broadcast(GameEvent.OnPreventRivalDamage);
-        Debug.Log("NOT DAMAGE RIVAL");
         playerAnima.SetTrigger("Fail");
-        //ChangeTurn(false,true);
         EventManager.Broadcast(GameEvent.OnRivalsTurn);
     }
 
-    private void DoDamageToPlayer()
-    {
-        /*EventManager.Broadcast(GameEvent.OnTakePlayerDamage);
-        Debug.Log("DAMAGE PLAYER");
-        ChangeTurn(true,false);
-        rivalAnim.SetTrigger("NotDamage");
-        EventManager.Broadcast(GameEvent.OnPlayersTurn);*/
-    }
+    
 
     private void DoNotDamageToPlayer()
     {
         EventManager.Broadcast(GameEvent.OnPreventPlayerDamage);
-        Debug.Log("NOT DAMAGE PLAYER");
         rivalAnim.SetTrigger("Fail");
-        //ChangeTurn(true,false);
         EventManager.Broadcast(GameEvent.OnPlayersTurn);
     }
 

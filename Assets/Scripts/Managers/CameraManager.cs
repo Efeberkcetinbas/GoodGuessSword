@@ -46,6 +46,7 @@ public class CameraManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnBallSpawn,OnBallSpawn);
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnRivalDead,OnRivalDead);
+        EventManager.AddHandler(GameEvent.OnRivalDeadEffect,OnRivalDeadEffect);
     }
 
     private void OnDisable()
@@ -55,6 +56,7 @@ public class CameraManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnBallSpawn,OnBallSpawn);
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnRivalDead,OnRivalDead);
+        EventManager.RemoveHandler(GameEvent.OnRivalDeadEffect,OnRivalDeadEffect);
     }
 
     void OnHit()
@@ -65,8 +67,12 @@ public class CameraManager : MonoBehaviour
     void OnRivalDead()
     {
         ChangeCameras(9,10);
-        Noise(noise2,10,10,2);
         StartCoroutine(CallDeadEffect());
+    }
+
+    void OnRivalDeadEffect()
+    {
+        Noise(noise2,10,10,0.4f);
     }
 
     private IEnumerator CallDeadEffect()

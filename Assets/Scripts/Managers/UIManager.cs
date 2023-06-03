@@ -12,6 +12,10 @@ public class UIManager : MonoBehaviour
     public GameData gameData;
     public PlayerData playerData;
     public RivalData rivalData;
+    [Header("Map Control")]
+    public TextMeshProUGUI conquerText;
+    public Image MapProgressBar;
+
     [Header("Player Control")]
     public TextMeshProUGUI playerHealthText;
     public Image PlayerProgressBar;
@@ -34,6 +38,7 @@ public class UIManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnRivalDead,OnRivalDead);
         EventManager.AddHandler(GameEvent.OnPlayerUpdateHealth,OnPlayerUpdateHealth);
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.AddHandler(GameEvent.OnMapUIUpdate,OnMapUIUpdate);
         //EventManager.AddHandler(GameEvent.OnTakePlayerDamage,OnPlayerUIUpdate);
     }
     private void OnDisable()
@@ -43,6 +48,7 @@ public class UIManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnRivalDead,OnRivalDead);
         EventManager.RemoveHandler(GameEvent.OnPlayerUpdateHealth,OnPlayerUpdateHealth);
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.RemoveHandler(GameEvent.OnMapUIUpdate,OnMapUIUpdate);
         //EventManager.RemoveHandler(GameEvent.OnTakePlayerDamage,OnPlayerUIUpdate);
     }
 
@@ -69,6 +75,11 @@ public class UIManager : MonoBehaviour
         RivalProgressBar.DOFillAmount((float)rivalData.RivalHealth/rivalData.TempHealth,0.1f);
     }
 
+    void OnMapUIUpdate()
+    {
+        MapProgressBar.DOFillAmount((float)gameData.levelIndex/100,0.5f);
+        conquerText.SetText(gameData.levelIndex.ToString() + " / 100");
+    }
     void OnGameStart()
     {
         RivalProgressBar.DOFillAmount(1,0.1f);

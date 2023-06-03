@@ -18,7 +18,6 @@ public class RivalTurnControl : MonoBehaviour
     
     private void OnRivalsTurn()
     {
-        Debug.Log("RIVAL TURN BEGIN");
         StartCoroutine(RivalsTurn());
     }
 
