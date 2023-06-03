@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: RivalData
   m_EditorClassIdentifier: 
   up: 0
-  down: 1
+  down: 0
   left: 0
-  right: 0
+  right: 1
   center: 0
   RivalHealth: 10
   TempHealth: 10
