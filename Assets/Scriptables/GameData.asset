@@ -15,5 +15,5 @@ MonoBehaviour:
   score: 0
   increaseScore: 0
   isGameEnd: 1
-  isPlayersTurn: 1
-  isRivalsTurn: 0
+  isPlayersTurn: 0
+  isRivalsTurn: 1

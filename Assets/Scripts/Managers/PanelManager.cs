@@ -7,7 +7,7 @@ using DG.Tweening;
 public class PanelManager : MonoBehaviour
 {
     [SerializeField] private RectTransform StartPanel,CharacterPanel,MapPanel,SettingsPanel;
-
+    [SerializeField] private RectTransform VsPanel;
 
     [SerializeField] private Image Fade;
 
@@ -17,12 +17,14 @@ public class PanelManager : MonoBehaviour
 
     [SerializeField] private GameObject backButton,settingsButton;
 
+    public GameData gameData;
+
 
     
 
     private bool oneTime=true;
 
-    /*private void OnEnable() 
+    private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
@@ -31,19 +33,26 @@ public class PanelManager : MonoBehaviour
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
-    }*/
+    }
     
-    /*private void Update() 
+    private void Update() 
     {
         if(oneTime)
         {
             if(Input.touchCount>=1 && Input.GetTouch(0).position.y>Screen.height/2.5f)
             {
                 StartPanel.gameObject.SetActive(false);
+                Invoke("GameStart",1);
+                VsPanel.DOScale(Vector2.one,0.2f).OnComplete(()=>EventManager.Broadcast(GameEvent.OnGameStart));
                 oneTime=false;
             }
         }
-    }*/
+    }
+
+    private void GameStart()
+    {
+        gameData.isGameEnd=false;
+    }
 
     private void OnNextLevel()
     {

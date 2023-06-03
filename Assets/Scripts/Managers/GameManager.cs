@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
     public PlayerData playerData;
     public RivalData rivalData;
 
+    [Header("Game Ending")]
+    public GameObject successMenu;
+    public GameObject failMenu;
+
 
 
 
@@ -22,11 +26,15 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnIncreaseScore, OnIncreaseScore);
+        EventManager.AddHandler(GameEvent.OnRivalDead,OnRivalDead);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnIncreaseScore, OnIncreaseScore);
+        EventManager.AddHandler(GameEvent.OnRivalDead,OnRivalDead);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
     
     void OnGameOver()
@@ -34,6 +42,24 @@ public class GameManager : MonoBehaviour
         gameData.isGameEnd=true;
     }
     
+    private void OnRivalDead()
+    {
+        StartCoroutine(OpenSuccess());
+    }
+
+    private IEnumerator OpenSuccess()
+    {
+        yield return new WaitForSeconds(3);
+        successMenu.SetActive(true);
+        successMenu.transform.DOScale(Vector3.one,0.5f);
+    }
+
+    private void OnNextLevel()
+    {
+        successMenu.transform.localScale=Vector3.zero;
+        successMenu.SetActive(false);
+        ResetDirections();
+    }
 
     void OnIncreaseScore()
     {
@@ -67,10 +93,7 @@ public class GameManager : MonoBehaviour
         ResetDirections();
     }
 
-    void OnNextLevel()
-    {
-        ResetDirections();
-    }
+    
 
     private void ResetDirections()
     {

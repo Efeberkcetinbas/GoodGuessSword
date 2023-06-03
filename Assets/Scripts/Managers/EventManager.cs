@@ -23,6 +23,7 @@ public enum GameEvent
     OnRivalCenter,
     OnTakeRivalDamage,
     OnPreventRivalDamage,
+    OnRivalDeadEffect,
     OnRivalUpdate,
     OnRivalDead,
 
@@ -36,6 +37,7 @@ public enum GameEvent
 
     //Game Management
     OnIncreaseScore,
+    OnGameStart,
     OnDoVersus,
     OnHit,
     OnBallSpawn,

@@ -9,7 +9,9 @@ public class CameraManager : MonoBehaviour
     public Camera mainCamera;
 
     public CinemachineVirtualCamera cm;
+    public CinemachineVirtualCamera cmv2;
     CinemachineBasicMultiChannelPerlin noise;
+    CinemachineBasicMultiChannelPerlin noise2;
     public Transform cmCamera;
 
     Vector3 cameraInitialPosition;
@@ -17,16 +19,21 @@ public class CameraManager : MonoBehaviour
     [Header("Shake Control")]
     public float shakeMagnitude = 0.05f;
     public float shakeTime = 0.5f;
-    public float amplitudeGain=1;
-    public float frequencyGain=1;
 
     private void Start() 
     {
         noise=cm.GetComponentInChildren<CinemachineBasicMultiChannelPerlin>();
+        noise2=cmv2.GetComponentInChildren<CinemachineBasicMultiChannelPerlin>();
+
         if(noise == null)
             Debug.LogError("No MultiChannelPerlin on the virtual camera.", this);
         else
             Debug.Log($"Noise Component: {noise}");
+
+        if(noise2 == null)
+            Debug.LogError("No MultiChannelPerlin on the virtual camera.", this);
+        else
+            Debug.Log($"Noise Component: {noise2}");
         
     }
     
@@ -37,6 +44,8 @@ public class CameraManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnGameOver,GameOver);
         EventManager.AddHandler(GameEvent.OnHit,OnHit);
         EventManager.AddHandler(GameEvent.OnBallSpawn,OnBallSpawn);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.AddHandler(GameEvent.OnRivalDead,OnRivalDead);
     }
 
     private void OnDisable()
@@ -44,33 +53,53 @@ public class CameraManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnGameOver,GameOver);
         EventManager.RemoveHandler(GameEvent.OnHit,OnHit);
         EventManager.RemoveHandler(GameEvent.OnBallSpawn,OnBallSpawn);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.RemoveHandler(GameEvent.OnRivalDead,OnRivalDead);
     }
 
     void OnHit()
     {
-        Noise();
+        Noise(noise,5,5,.4f);
+    }
+
+    void OnRivalDead()
+    {
+        ChangeCameras(9,10);
+        Noise(noise2,10,10,2);
+        StartCoroutine(CallDeadEffect());
+    }
+
+    private IEnumerator CallDeadEffect()
+    {
+        yield return new WaitForSeconds(2);
+        EventManager.Broadcast(GameEvent.OnRivalDeadEffect);
     }
 
     void OnBallSpawn()
     {
-        noise.m_AmplitudeGain = 3;
-        noise.m_FrequencyGain = 3;
-        StartCoroutine(ResetNoise(0.2f));
+        Noise(noise,4,4,shakeTime);
     }
 
-    public void Noise() 
+    public void Noise(CinemachineBasicMultiChannelPerlin noise, float amplitudeGain, float frequencyGain,float duration) 
     {
         noise.m_AmplitudeGain = amplitudeGain;
         noise.m_FrequencyGain = frequencyGain;
-        StartCoroutine(ResetNoise(shakeTime));    
+        StartCoroutine(ResetNoise(noise,duration));    
     }
 
-    private IEnumerator ResetNoise(float duration)
+    private IEnumerator ResetNoise(CinemachineBasicMultiChannelPerlin noise, float duration)
     {
         yield return new WaitForSeconds(duration);
         noise.m_AmplitudeGain = 0;
         noise.m_FrequencyGain = 0;    
     }
+
+    private void OnNextLevel()
+    {
+        ChangeCameras(10,9);
+    }
+
+    
 
     
 
@@ -101,33 +130,12 @@ public class CameraManager : MonoBehaviour
         
     }
 
+    private void ChangeCameras(int cm1, int cm2)
+    {
+        cm.m_Priority=cm1;
+        cmv2.m_Priority=cm2;
+    }
 
-    #region CameraShaker
- 
+
     
-
-    private void ShakeIt()
-    {
-        cameraInitialPosition = mainCamera.transform.position;
-        InvokeRepeating("StartCameraShaking", 0f, 0.005f);
-        Invoke("StopCameraShaking", shakeTime);
-
-    }
-
-    private void StartCameraShaking()
-    {
-        float cameraShakingOffsetX = Random.value * shakeMagnitude * 2 - shakeMagnitude;
-        float cameraShakingOffsetY = Random.value * shakeMagnitude * 2 - shakeMagnitude;
-        Vector3 cameraIntermediatePosition = mainCamera.transform.position;
-        cameraIntermediatePosition.x += cameraShakingOffsetX;
-        cameraIntermediatePosition.y += cameraShakingOffsetY;
-        mainCamera.transform.position = cameraIntermediatePosition;
-    }
-
-    private void StopCameraShaking()
-    {
-        CancelInvoke("StartCameraShaking");
-        mainCamera.transform.position = cameraInitialPosition;
-    }
-    #endregion    
 }

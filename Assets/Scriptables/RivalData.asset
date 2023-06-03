@@ -15,9 +15,9 @@ MonoBehaviour:
   up: 0
   down: 0
   left: 0
-  right: 1
-  center: 0
-  RivalHealth: 10
+  right: 0
+  center: 1
+  RivalHealth: 9
   TempHealth: 10
   index: 0
   MaxDamageAmount: 1

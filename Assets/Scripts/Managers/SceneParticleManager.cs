@@ -10,6 +10,7 @@ public class SceneParticleManager : MonoBehaviour
     [SerializeField] private ParticleSystem naniParticle;
     [SerializeField] private ParticleSystem playersTurnParticle;
     [SerializeField] private ParticleSystem rivalsTurnParticle;
+    [SerializeField] private ParticleSystem successParticle;
 
     private void OnEnable() 
     {
@@ -19,6 +20,7 @@ public class SceneParticleManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnPreventRivalDamage,OnPreventRivalDamage);
         EventManager.AddHandler(GameEvent.OnPlayersTurn,OnPlayersTurn);
         EventManager.AddHandler(GameEvent.OnRivalsTurn,OnRivalsTurn);
+        EventManager.AddHandler(GameEvent.OnRivalDead,OnRivalDead);
     }
 
     private void OnDisable() 
@@ -29,6 +31,7 @@ public class SceneParticleManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnPreventRivalDamage,OnPreventRivalDamage);
         EventManager.RemoveHandler(GameEvent.OnPlayersTurn,OnPlayersTurn);
         EventManager.RemoveHandler(GameEvent.OnRivalsTurn,OnRivalsTurn);
+        EventManager.RemoveHandler(GameEvent.OnRivalDead,OnRivalDead);
     }
 
     private void OnTakePlayerDamage()
@@ -59,5 +62,10 @@ public class SceneParticleManager : MonoBehaviour
     private void OnRivalsTurn()
     {
         rivalsTurnParticle.Play();
+    }
+
+    private void OnRivalDead()
+    {
+        successParticle.Play();
     }
 }

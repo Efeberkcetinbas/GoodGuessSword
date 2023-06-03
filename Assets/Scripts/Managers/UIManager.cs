@@ -32,7 +32,8 @@ public class UIManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnUIUpdate, OnUIUpdate);
         EventManager.AddHandler(GameEvent.OnRivalUpdate,OnRivalUpdate);
         EventManager.AddHandler(GameEvent.OnRivalDead,OnRivalDead);
-        EventManager.AddHandler(GameEvent.OnPlayerUpdateHealth,OnPlayerUIUpdate);
+        EventManager.AddHandler(GameEvent.OnPlayerUpdateHealth,OnPlayerUpdateHealth);
+        EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
         //EventManager.AddHandler(GameEvent.OnTakePlayerDamage,OnPlayerUIUpdate);
     }
     private void OnDisable()
@@ -40,7 +41,8 @@ public class UIManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnUIUpdate, OnUIUpdate);
         EventManager.RemoveHandler(GameEvent.OnRivalUpdate,OnRivalUpdate);
         EventManager.RemoveHandler(GameEvent.OnRivalDead,OnRivalDead);
-        EventManager.RemoveHandler(GameEvent.OnPlayerUpdateHealth,OnPlayerUIUpdate);
+        EventManager.RemoveHandler(GameEvent.OnPlayerUpdateHealth,OnPlayerUpdateHealth);
+        EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
         //EventManager.RemoveHandler(GameEvent.OnTakePlayerDamage,OnPlayerUIUpdate);
     }
 
@@ -51,17 +53,13 @@ public class UIManager : MonoBehaviour
         score.transform.DOScale(new Vector3(1.5f,1.5f,1.5f),0.2f).OnComplete(()=>score.transform.DOScale(new Vector3(1,1f,1f),0.2f));
     }
 
-    void OnPlayerUIUpdate()
+    void OnPlayerUpdateHealth()
     {
         playerHealthText.SetText(playerData.Health.ToString()+ " HP");
         PlayerProgressBar.DOFillAmount((float) playerData.Health/playerData.TempHealth,0.1f);
     }
 
-    void OnRivalUIUpdate()
-    {
-        rivalHealthText.SetText(rivalData.RivalHealth.ToString());
-        rivalHealthText.transform.DOScale(new Vector3(1.5f,1.5f,1.5f),0.2f).OnComplete(()=>score.transform.DOScale(new Vector3(1,1f,1f),0.2f));
-    }
+   
 
     void OnRivalUpdate()
     {
@@ -69,6 +67,11 @@ public class UIManager : MonoBehaviour
         rivalHealthText.SetText(rivalData.RivalHealth.ToString() + " HP");
         RivalImage.sprite=specialsImage[rivalData.index];
         RivalProgressBar.DOFillAmount((float)rivalData.RivalHealth/rivalData.TempHealth,0.1f);
+    }
+
+    void OnGameStart()
+    {
+        RivalProgressBar.DOFillAmount(1,0.1f);
     }
 
     void OnRivalDead()
