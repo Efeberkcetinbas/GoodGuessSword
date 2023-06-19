@@ -10,14 +10,18 @@ public class RivalDamageControl : MonoBehaviour
 
     public List<GameObject> RivalsCharacters=new List<GameObject>();
     public List<GameObject> RivalsModels=new List<GameObject>();
+    public List<GameObject> Heads=new List<GameObject>();
+    public List<GameObject> Clothes=new List<GameObject>();
 
     public SkinnedMeshRenderer meshRenderer;
-    [SerializeField] private List<MeshRenderer> eyesMesh=new List<MeshRenderer>();
 
     [Header("Damage Effect")]
     [SerializeField] private JumpingDamageEffect jumpingDamage;
     [SerializeField] private Transform pointPos;
     [SerializeField] private ParticleSystem deadEffect;
+
+    private int randomClothesIndex;
+    private int randomHeadIndex;
 
 
     
@@ -50,6 +54,7 @@ public class RivalDamageControl : MonoBehaviour
         RivalsCharacters[rivalData.index].SetActive(true);
         RivalsModels[rivalData.index].SetActive(true);
         MakeRandomColor();
+        ActiveAccessories();
     }
 
     private void OnNextLevel()
@@ -64,6 +69,7 @@ public class RivalDamageControl : MonoBehaviour
         RivalsCharacters[rivalData.index].SetActive(true);
         RivalsModels[rivalData.index].SetActive(true);
         MakeRandomColor();
+        ActiveAccessories();
         //EventManager.Broadcast(GameEvent.OnUpdateRivalArmy);
     }
 
@@ -108,9 +114,30 @@ public class RivalDamageControl : MonoBehaviour
     private void MakeRandomColor()
     {
         meshRenderer.material.color=Random.ColorHSV(0,1,1,1,0.5f,1f);
-        for (int i = 0; i < eyesMesh.Count; i++)
+    }
+
+    private void MakeRandomIndex()
+    {
+        randomClothesIndex=Random.Range(0,Clothes.Count);
+        randomHeadIndex=Random.Range(0,Heads.Count);
+        Debug.Log("Random Clothes : " + randomClothesIndex + "Random Head : " + randomHeadIndex);
+    }
+
+    private void ActiveAccessories()
+    {
+        MakeRandomIndex();
+        
+        for (int i = 0; i < Clothes.Count; i++)
         {
-            eyesMesh[i].material.color=Random.ColorHSV(0,1,1,1,0.5f,1f);
+            Clothes[i].SetActive(false);
         }
+
+        for (int i = 0; i < Heads.Count; i++)
+        {
+            Heads[i].SetActive(false);
+        }
+
+        Clothes[randomClothesIndex].SetActive(true);
+        Heads[randomHeadIndex].SetActive(true);
     }
 }
