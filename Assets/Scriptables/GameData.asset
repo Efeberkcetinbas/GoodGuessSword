@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   score: 0
-  increaseScore: 0
-  levelIndex: 0
-  isGameEnd: 1
+  increaseScore: 10
+  levelIndex: 1
+  isGameEnd: 0
   isPlayersTurn: 1
   isRivalsTurn: 0

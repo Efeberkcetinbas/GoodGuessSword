@@ -52,6 +52,10 @@ public class UIManager : MonoBehaviour
         //EventManager.RemoveHandler(GameEvent.OnTakePlayerDamage,OnPlayerUIUpdate);
     }
 
+    private void Start() 
+    {
+        OnUIUpdate();
+    }
     
     void OnUIUpdate()
     {
