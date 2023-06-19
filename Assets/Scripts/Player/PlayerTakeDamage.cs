@@ -18,11 +18,13 @@ public class PlayerTakeDamage : MonoBehaviour
     [SerializeField] private JumpingDamageEffect jumpingDamage;
     [SerializeField] private Transform pointPos;
 
+    private Color oldColor;
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnTakePlayerDamage,OnTakePlayerDamage);
         EventManager.AddHandler(GameEvent.OnPreventPlayerDamage,OnPreventPlayerDamage);
         EventManager.AddHandler(GameEvent.OnTakeRivalDamage,OnTakeRivalDamage);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
 
     private void OnDisable() 
@@ -30,6 +32,17 @@ public class PlayerTakeDamage : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnTakePlayerDamage,OnTakePlayerDamage);
         EventManager.RemoveHandler(GameEvent.OnPreventPlayerDamage,OnPreventPlayerDamage);
         EventManager.RemoveHandler(GameEvent.OnTakeRivalDamage,OnTakeRivalDamage);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+    }
+
+    private void Start() 
+    {
+        oldColor=skinnedMeshRenderer.material.color;
+    }
+
+    private void OnNextLevel()
+    {
+        oldColor=skinnedMeshRenderer.material.color;
     }
 
     private void OnTakePlayerDamage()
@@ -53,8 +66,9 @@ public class PlayerTakeDamage : MonoBehaviour
 
     private void OnBackWhite()
     {
-        skinnedMeshRenderer.material.color=Color.white;
+        skinnedMeshRenderer.material.color=oldColor;
     }
+
 
     private void OnTakeRivalDamage()
     {

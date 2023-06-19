@@ -12,11 +12,15 @@ public class RivalTakeDamage : MonoBehaviour
     [SerializeField] private Animator animator;
 
 
+    private Color oldColor;
+
+
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnTakeRivalDamage,OnTakeRivalDamage);
         EventManager.AddHandler(GameEvent.OnPreventRivalDamage,OnPreventRivalDamage);
         EventManager.AddHandler(GameEvent.OnTakePlayerDamage,OnTakePlayerDamage);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
 
     private void OnDisable() 
@@ -24,6 +28,17 @@ public class RivalTakeDamage : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnTakeRivalDamage,OnTakeRivalDamage);
         EventManager.RemoveHandler(GameEvent.OnPreventRivalDamage,OnPreventRivalDamage);
         EventManager.RemoveHandler(GameEvent.OnTakePlayerDamage,OnTakePlayerDamage);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+    }
+
+    private void Start() 
+    {
+        oldColor=skinnedMeshRenderer.material.color;
+    }
+
+    private void OnNextLevel()
+    {
+        oldColor=skinnedMeshRenderer.material.color;
     }
 
     private void OnTakeRivalDamage()
@@ -46,7 +61,7 @@ public class RivalTakeDamage : MonoBehaviour
 
     private void OnBackWhite()
     {
-        skinnedMeshRenderer.material.color=Color.white;
+        skinnedMeshRenderer.material.color=oldColor;
     }
 
     private void OnTakePlayerDamage()

@@ -37,7 +37,7 @@ public class PanelManager : MonoBehaviour
     
     private void Update() 
     {
-        /*if(oneTime)
+        if(oneTime)
         {
             if(Input.touchCount>=1 && Input.GetTouch(0).position.y>Screen.height/2.5f)
             {
@@ -46,7 +46,7 @@ public class PanelManager : MonoBehaviour
                 VsPanel.DOScale(Vector2.one,0.2f).OnComplete(()=>EventManager.Broadcast(GameEvent.OnGameStart));
                 oneTime=false;
             }
-        }*/
+        }
     }
 
     private void GameStart()

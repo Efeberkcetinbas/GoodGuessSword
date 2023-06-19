@@ -11,6 +11,9 @@ public class RivalDamageControl : MonoBehaviour
     public List<GameObject> RivalsCharacters=new List<GameObject>();
     public List<GameObject> RivalsModels=new List<GameObject>();
 
+    public SkinnedMeshRenderer meshRenderer;
+    [SerializeField] private List<MeshRenderer> eyesMesh=new List<MeshRenderer>();
+
     [Header("Damage Effect")]
     [SerializeField] private JumpingDamageEffect jumpingDamage;
     [SerializeField] private Transform pointPos;
@@ -46,6 +49,7 @@ public class RivalDamageControl : MonoBehaviour
 
         RivalsCharacters[rivalData.index].SetActive(true);
         RivalsModels[rivalData.index].SetActive(true);
+        MakeRandomColor();
     }
 
     private void OnNextLevel()
@@ -59,7 +63,8 @@ public class RivalDamageControl : MonoBehaviour
 
         RivalsCharacters[rivalData.index].SetActive(true);
         RivalsModels[rivalData.index].SetActive(true);
-        EventManager.Broadcast(GameEvent.OnUpdateRivalArmy);
+        MakeRandomColor();
+        //EventManager.Broadcast(GameEvent.OnUpdateRivalArmy);
     }
 
     private void OnRivalDeadEffect()
@@ -98,5 +103,14 @@ public class RivalDamageControl : MonoBehaviour
     private void OnPreventRivalDamage()
     {
         //Particles
+    }
+
+    private void MakeRandomColor()
+    {
+        meshRenderer.material.color=Random.ColorHSV(0,1,1,1,0.5f,1f);
+        for (int i = 0; i < eyesMesh.Count; i++)
+        {
+            eyesMesh[i].material.color=Random.ColorHSV(0,1,1,1,0.5f,1f);
+        }
     }
 }
