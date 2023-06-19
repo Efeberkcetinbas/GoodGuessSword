@@ -13,12 +13,14 @@ public class PlatformControl : MonoBehaviour
     {
         EventManager.AddHandler(GameEvent.OnPlayersTurn,OnPlayersTurn);
         EventManager.AddHandler(GameEvent.OnRivalsTurn,OnRivalsTurn);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnPlayersTurn);
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnPlayersTurn,OnPlayersTurn);
         EventManager.RemoveHandler(GameEvent.OnRivalsTurn,OnRivalsTurn);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnPlayersTurn);
     }
     private void OnPlayersTurn()
     {

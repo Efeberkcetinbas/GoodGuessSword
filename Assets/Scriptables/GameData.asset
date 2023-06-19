@@ -16,5 +16,5 @@ MonoBehaviour:
   increaseScore: 10
   levelIndex: 1
   isGameEnd: 0
-  isPlayersTurn: 1
+  isPlayersTurn: 0
   isRivalsTurn: 0

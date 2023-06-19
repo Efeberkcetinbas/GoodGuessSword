@@ -7,11 +7,15 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    public TextMeshProUGUI score,highscore,endingScore;
+    public TextMeshProUGUI score;
 
     public GameData gameData;
     public PlayerData playerData;
     public RivalData rivalData;
+    [Header("Level Control")]
+    public TextMeshProUGUI LevelText;
+    public TextMeshProUGUI EndingLevelText;
+
     [Header("Map Control")]
     public TextMeshProUGUI conquerText;
     public Image MapProgressBar;
@@ -39,6 +43,7 @@ public class UIManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnPlayerUpdateHealth,OnPlayerUpdateHealth);
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
         EventManager.AddHandler(GameEvent.OnMapUIUpdate,OnMapUIUpdate);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         //EventManager.AddHandler(GameEvent.OnTakePlayerDamage,OnPlayerUIUpdate);
     }
     private void OnDisable()
@@ -49,12 +54,14 @@ public class UIManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnPlayerUpdateHealth,OnPlayerUpdateHealth);
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
         EventManager.RemoveHandler(GameEvent.OnMapUIUpdate,OnMapUIUpdate);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         //EventManager.RemoveHandler(GameEvent.OnTakePlayerDamage,OnPlayerUIUpdate);
     }
 
     private void Start() 
     {
         OnUIUpdate();
+        OnNextLevel();
     }
     
     void OnUIUpdate()
@@ -63,13 +70,17 @@ public class UIManager : MonoBehaviour
         score.transform.DOScale(new Vector3(1.5f,1.5f,1.5f),0.2f).OnComplete(()=>score.transform.DOScale(new Vector3(1,1f,1f),0.2f));
     }
 
+    void OnNextLevel()
+    {
+        LevelText.SetText("LEVEL " + gameData.levelIndex.ToString());
+    }
+
     void OnPlayerUpdateHealth()
     {
         playerHealthText.SetText(playerData.Health.ToString()+ " HP");
         PlayerProgressBar.DOFillAmount((float) playerData.Health/playerData.TempHealth,0.1f);
     }
 
-   
 
     void OnRivalUpdate()
     {
@@ -93,5 +104,6 @@ public class UIManager : MonoBehaviour
     {
         rivalData.TempHealth=rivalData.RivalHealth;
         rivalLevelText.SetText("Level " + (rivalData.index+1).ToString());
+        EndingLevelText.SetText("LEVEL "+ gameData.levelIndex.ToString() + " COMPLETED");
     }
 }

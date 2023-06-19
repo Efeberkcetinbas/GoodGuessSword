@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 [CreateAssetMenu(fileName = "RivalData", menuName = "Data/RivalData", order = 2)]
@@ -18,5 +19,6 @@ public class RivalData : ScriptableObject
     public int MaxDamageAmount=1;
     
     public string RivalsName;
+
 
 }

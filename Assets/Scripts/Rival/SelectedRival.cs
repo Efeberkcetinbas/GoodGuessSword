@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 public class SelectedRival : MonoBehaviour
 {
     [SerializeField] private string specialName;
     [SerializeField] private int specialHealth;
     [SerializeField] private int damageAmount;
+
 
     public RivalData rivalData;
 

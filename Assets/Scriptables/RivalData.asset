@@ -17,8 +17,8 @@ MonoBehaviour:
   left: 0
   right: 1
   center: 0
-  RivalHealth: 9
+  RivalHealth: 8
   TempHealth: 10
   index: 0
-  MaxDamageAmount: 1
-  RivalsName: Cylinder
+  MaxDamageAmount: 2
+  RivalsName: Damien
